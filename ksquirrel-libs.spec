@@ -1,5 +1,5 @@
 Summary:	ksquirrel-libs is a set of image decoders
-Summary(pl):	ksquirrel-libs jest zestawem dekoderów obrazków.
+Summary(pl):	ksquirrel-libs jest zestawem dekoderów obrazków
 Name:		ksquirrel-libs
 Version:	0.5.0
 Release:	1
@@ -57,5 +57,5 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README
-%attr(755,root,root) %{_libdir}/ksquirrel
-/
+%dir %{_libdir}/ksquirrel
+%attr(755,root,root) %{_libdir}/ksquirrel/*.so
