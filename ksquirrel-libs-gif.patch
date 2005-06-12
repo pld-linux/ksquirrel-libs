@@ -1,0 +1,25 @@
+diff -urN ksquirrel-libs-0.5.0.org/kernel/gif/Makefile.am ksquirrel-libs-0.5.0/kernel/gif/Makefile.am
+--- ksquirrel-libs-0.5.0.org/kernel/gif/Makefile.am	2005-02-17 14:54:25.000000000 +0100
++++ ksquirrel-libs-0.5.0/kernel/gif/Makefile.am	2005-06-12 12:41:32.042790336 +0200
+@@ -1,4 +1,4 @@
+-INCLUDES = -I.. -I../../contrib/libungif/lib
++INCLUDES = -I..
+ 
+ lib_LTLIBRARIES = libSQ_read_gif.la
+ libSQ_read_gif_la_SOURCES = read_gif.cpp read_gif.h
+@@ -7,4 +7,4 @@
+ 
+ libSQ_read_gif_la_LDFLAGS = -release 1.2.0
+ 
+-LIBS = -L. -lungif
+\ Brak znaku nowej linii na koñcu pliku
++LIBS = -lungif
+diff -urN ksquirrel-libs-0.5.0.org/Makefile.am ksquirrel-libs-0.5.0/Makefile.am
+--- ksquirrel-libs-0.5.0.org/Makefile.am	2005-01-29 02:02:27.000000000 +0100
++++ ksquirrel-libs-0.5.0/Makefile.am	2005-06-12 12:40:47.277595680 +0200
+@@ -1,4 +1,4 @@
+-SUBDIRS = contrib kernel
++SUBDIRS = kernel
+ 
+ AUTOMAKE_OPTIONS = foreign 
+ 
