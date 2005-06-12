@@ -7,11 +7,14 @@ License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/ksquirrel/%{name}-%{version}.tar.bz2
 # Source0-md5:  4bc3d75b443c8ff6f3a5427cc4164ca9
+Patch0:		%{name}-gif.patch
 URL:		http://ksquirrel.sourceforge.net/
+BuildRequires:	automake
 BuildRequires:  XFree86-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:  libtiff-devel
+BuildRequires:	giflib-devel
 BuildRequires:  rpmbuild(macros) >= 1.197
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -23,9 +26,13 @@ KSquirrel - biblioteki.
 
 %prep
 %setup -q 
+%patch0 -p1
 
 %build
-%configure
+%{__aclocal}
+%{__automake}
+%configure \
+	--libdir=%{_libdir}/ksquirrel
 %{__make}
 
 %install
@@ -40,4 +47,4 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README
-%{_libdir}/FIXME
+%attr(755,root,root) %{_libdir}/ksquirrel/*.so
