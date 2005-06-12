@@ -6,7 +6,7 @@ Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/ksquirrel/%{name}-%{version}.tar.bz2
-# Source0-md5:  4bc3d75b443c8ff6f3a5427cc4164ca9
+# Source0-md5:	4bc3d75b443c8ff6f3a5427cc4164ca9
 Patch0:		%{name}-gif.patch
 URL:		http://ksquirrel.sourceforge.net/
 BuildRequires:	XFree86-devel
