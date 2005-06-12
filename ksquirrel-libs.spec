@@ -1,7 +1,7 @@
 
 Summary:	Graphics file browser utility - libraries.
 Summary(pl):	Narzêdzie do przegl±dania plików graficznych - biblioteki.
-Name:		ksquirrel
+Name:		ksquirrel-libs
 Version:	0.5.0
 Release:	1
 License:	GPL
