@@ -1,5 +1,5 @@
-Summary:	ksquirrel-libs is a set of image decoders
-Summary(pl):	ksquirrel-libs jest zestawem dekoderów obrazków
+Summary:	ksquirrel-libs - a set of image decoders
+Summary(pl):	ksquirrel-libs - zestaw dekoderów obrazków
 Name:		ksquirrel-libs
 Version:	0.5.0
 Release:	1
@@ -9,13 +9,13 @@ Source0:	http://dl.sourceforge.net/ksquirrel/%{name}-%{version}.tar.bz2
 # Source0-md5:  4bc3d75b443c8ff6f3a5427cc4164ca9
 Patch0:		%{name}-gif.patch
 URL:		http://ksquirrel.sourceforge.net/
+BuildRequires:	XFree86-devel
 BuildRequires:	automake
-BuildRequires:  XFree86-devel
+BuildRequires:	giflib-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
-BuildRequires:  libtiff-devel
-BuildRequires:	giflib-devel
-BuildRequires:  rpmbuild(macros) >= 1.197
+BuildRequires:	libtiff-devel
+BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -28,11 +28,11 @@ mechanism that could use libraries.
 
 %description -l pl
 ksquirrel-libs jest zestawem dekoderów obrazków.
-- Zawiera regularne biblioteki dla KSquirrel.
-- Zawiera ró¿ne dekodery obrazów: JPEG, PNG, BMP, TIFF etc.
+- Zawiera normalne biblioteki dla KSquirrela.
+- Zawiera ró¿ne dekodery obrazów: JPEG, PNG, BMP, TIFF itd.
 
-Mozesz uzywaæ ksquirrel-libs w innych projektach. Napisz tylko w³asny
-mechanizm, który bêdzie potrafi³ je u¿ywaæ.
+Mo¿na u¿ywaæ ksquirrel-libs w innych projektach. Wystarczy tylko
+napisaæ w³asny mechanizm, który bêdzie potrafi³ ich u¿ywaæ.
 
 %prep
 %setup -q 
