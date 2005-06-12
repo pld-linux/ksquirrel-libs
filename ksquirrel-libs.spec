@@ -1,5 +1,5 @@
-Summary:	Graphics file browser utility - libraries
-Summary(pl):	Narzêdzie do przegl±dania plików graficznych - biblioteki
+Summary:	ksquirrel-libs is a set of image decoders
+Summary(pl):	ksquirrel-libs jest zestawem dekoderów obrazków.
 Name:		ksquirrel-libs
 Version:	0.5.0
 Release:	1
@@ -19,10 +19,20 @@ BuildRequires:  rpmbuild(macros) >= 1.197
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Libraries to KSquirrel.
+ksquirrel-libs is a set of image decoders.
+- It contains regular libraries for KSquirrel.
+- It contains different image decoders for JPEG, PNG, BMP, TIFF etc.
+
+You can use ksquirrel-libs in other projects, just write your own
+mechanism that could use libraries.
 
 %description -l pl
-KSquirrel - biblioteki.
+ksquirrel-libs jest zestawem dekoderów obrazków.
+- Zawiera regularne biblioteki dla KSquirrel.
+- Zawiera ró¿ne dekodery obrazów: JPEG, PNG, BMP, TIFF etc.
+
+Mozesz uzywaæ ksquirrel-libs w innych projektach. Napisz tylko w³asny
+mechanizm, który bêdzie potrafi³ je u¿ywaæ.
 
 %prep
 %setup -q 
@@ -47,4 +57,5 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README
-%attr(755,root,root) %{_libdir}/ksquirrel/*.so
+%attr(755,root,root) %{_libdir}/ksquirrel
+/
