@@ -1,20 +1,29 @@
+%define		_rc	pre9
 Summary:	ksquirrel-libs - a set of image decoders
 Summary(pl):	ksquirrel-libs - zestaw dekoderów obrazków
 Name:		ksquirrel-libs
-Version:	0.5.0
-Release:	1
+Version:	0.6.0
+Release:	0.%{_rc}.1
 License:	GPL
 Group:		X11/Applications/Graphics
-Source0:	http://dl.sourceforge.net/ksquirrel/%{name}-%{version}.tar.bz2
-# Source0-md5:	4bc3d75b443c8ff6f3a5427cc4164ca9
-Patch0:		%{name}-gif.patch
+Source0:	http://dl.sourceforge.net/ksquirrel/%{name}-%{version}-%{_rc}.tar.bz2
+# Source0-md5:	47fca33edc543f60f2045651bb2033ed
 URL:		http://ksquirrel.sourceforge.net/
+BuildRequires:	OpenEXR-devel
 BuildRequires:	XFree86-devel
+BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	giflib-devel
+BuildRequires:	freetype-devel >= 2.1.9
+BuildRequires:	jasper-devel
 BuildRequires:	libjpeg-devel
+BuildRequires:	libmng-devel
+BuildRequires:	libpixman-devel
 BuildRequires:	libpng-devel
+BuildRequires:	libsvg-cairo-devel
 BuildRequires:	libtiff-devel
+BuildRequires:	libungif-devel
+BuildRequires:	libwmf-devel
+BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -35,14 +44,11 @@ Mo¿na u¿ywaæ ksquirrel-libs w innych projektach. Wystarczy tylko
 napisaæ w³asny mechanizm, który bêdzie potrafi³ ich u¿ywaæ.
 
 %prep
-%setup -q 
-%patch0 -p1
+%setup -q
 
 %build
-%{__aclocal}
-%{__automake}
 %configure \
-	--libdir=%{_libdir}/ksquirrel
+	--libdir=%{_libdir}/ksquirrel-libs
 %{__make}
 
 %install
@@ -51,11 +57,15 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+rm -f $RPM_BUILD_ROOT%{_libdir}/ksquirrel-libs/*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README
-%dir %{_libdir}/ksquirrel
-%attr(755,root,root) %{_libdir}/ksquirrel/*.so
+%doc README doc/html/*.{css,gif,html,png}
+%dir %{_libdir}/ksquirrel-libs
+%attr(755,root,root) %{_libdir}/ksquirrel-libs/*.so
+%{_libdir}/ksquirrel-libs/rgbmap
+%{_libdir}/ksquirrel-libs/version
