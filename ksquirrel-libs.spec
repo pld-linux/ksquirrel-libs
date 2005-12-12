@@ -1,13 +1,12 @@
-%define		_rc	pre9
 Summary:	ksquirrel-libs - a set of image decoders
 Summary(pl):	ksquirrel-libs - zestaw dekoderów obrazków
 Name:		ksquirrel-libs
 Version:	0.6.0
-Release:	0.%{_rc}.1
+Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
-Source0:	http://dl.sourceforge.net/ksquirrel/%{name}-%{version}-%{_rc}.tar.bz2
-# Source0-md5:	47fca33edc543f60f2045651bb2033ed
+Source0:	http://dl.sourceforge.net/ksquirrel/%{name}-%{version}.tar.bz2
+# Source0-md5:	2c876035745f35b6cb57a1d4d13cfe8c
 URL:		http://ksquirrel.sourceforge.net/
 BuildRequires:	OpenEXR-devel
 BuildRequires:	XFree86-devel
@@ -57,6 +56,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+rm -rf $RPM_BUILD_ROOT%{_docdir}/%{name}
 rm -f $RPM_BUILD_ROOT%{_libdir}/ksquirrel-libs/*.la
 
 %clean
