@@ -46,6 +46,7 @@ napisaæ w³asny mechanizm, który bêdzie potrafi³ ich u¿ywaæ.
 %setup -q
 
 %build
+cp -f /usr/share/automake/config.sub admin
 %configure \
 	--libdir=%{_libdir}/ksquirrel-libs
 %{__make}
