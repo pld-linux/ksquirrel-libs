@@ -1,12 +1,12 @@
 Summary:	ksquirrel-libs - a set of image decoders
 Summary(pl):	ksquirrel-libs - zestaw dekoderów obrazków
 Name:		ksquirrel-libs
-Version:	0.6.0
-Release:	2
-License:	GPL
+Version:	0.6.1
+Release:	1
+License:	GPL v2
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/ksquirrel/%{name}-%{version}.tar.bz2
-# Source0-md5:	2c876035745f35b6cb57a1d4d13cfe8c
+# Source0-md5:	81c094fbf80f620b0ca661d0f5a5e2d4
 URL:		http://ksquirrel.sourceforge.net/
 BuildRequires:	OpenEXR-devel
 BuildRequires:	XFree86-devel
@@ -42,6 +42,18 @@ ksquirrel-libs jest zestawem dekoderów obrazków.
 Mo¿na u¿ywaæ ksquirrel-libs w innych projektach. Wystarczy tylko
 napisaæ w³asny mechanizm, który bêdzie potrafi³ ich u¿ywaæ.
 
+%package devel
+Summary:	Header files for ksquirrel-libs
+Summary(pl):	Nag³ówki biblioteki ksquirrel-libs
+Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
+
+%description devel
+Header files for ksquirrel-libs.
+
+%description devel -l pl
+Nag³ówki biblioteki ksquirrel-libs.
+
 %prep
 %setup -q
 
@@ -58,10 +70,12 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 rm -rf $RPM_BUILD_ROOT%{_docdir}/%{name}
-rm -f $RPM_BUILD_ROOT%{_libdir}/ksquirrel-libs/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
@@ -70,3 +84,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/ksquirrel-libs/*.so
 %{_libdir}/ksquirrel-libs/rgbmap
 %{_libdir}/ksquirrel-libs/version
+
+%files devel
+%defattr(644,root,root,755)
+%{_includedir}/ksquirrel-libs
+%{_libdir}/ksquirrel-libs/*.la
+%{_pkgconfigdir}/*.pc
