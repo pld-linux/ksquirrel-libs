@@ -7,6 +7,7 @@ License:	GPL v2
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/ksquirrel/%{name}-%{version}.tar.bz2
 # Source0-md5:	81c094fbf80f620b0ca661d0f5a5e2d4
+Patch0:		%{name}-pkgconfigdir.patch
 URL:		http://ksquirrel.sourceforge.net/
 BuildRequires:	OpenEXR-devel
 BuildRequires:	XFree86-devel
@@ -56,9 +57,12 @@ Nag³ówki biblioteki ksquirrel-libs.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 cp -f /usr/share/automake/config.sub admin
+%{__make} -f admin/Makefile.common cvs
+
 %configure \
 	--libdir=%{_libdir}/ksquirrel-libs
 %{__make}
