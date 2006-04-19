@@ -1,12 +1,16 @@
+#
+#TODO:
+# - make xorg deps
+#
 Summary:	ksquirrel-libs - a set of image decoders
 Summary(pl):	ksquirrel-libs - zestaw dekoderów obrazków
 Name:		ksquirrel-libs
-Version:	0.6.1
+Version:	0.6.2
 Release:	1
 License:	GPL v2
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/ksquirrel/%{name}-%{version}.tar.bz2
-# Source0-md5:	81c094fbf80f620b0ca661d0f5a5e2d4
+# Source0-md5:	19f8e31da699c10bdbbcf2a33c9ce947
 Patch0:		%{name}-pkgconfigdir.patch
 URL:		http://ksquirrel.sourceforge.net/
 BuildRequires:	OpenEXR-devel
@@ -64,7 +68,7 @@ cp -f /usr/share/automake/config.sub admin
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
-	--libdir=%{_libdir}/ksquirrel-libs
+	--libdir=%{_libdir}
 %{__make}
 
 %install
@@ -87,8 +91,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc README doc/html/*.{css,gif,html,png}
 %dir %{_libdir}/ksquirrel-libs
 %attr(755,root,root) %{_libdir}/ksquirrel-libs/*.so
-%{_libdir}/ksquirrel-libs/rgbmap
-%{_libdir}/ksquirrel-libs/version
+%attr(755,root,root) %{_libdir}/ksquirrel-libs/libkls*.so.*.*.*
+%attr(755,root,root) %{_libdir}/ksquirrel-libs/libksquirrel-libs.so.*.*.*
+%{_datadir}/ksquirrel-libs/rgbmap
 
 %files devel
 %defattr(644,root,root,755)
