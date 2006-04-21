@@ -67,8 +67,8 @@ Nag³ówki biblioteki ksquirrel-libs.
 cp -f /usr/share/automake/config.sub admin
 %{__make} -f admin/Makefile.common cvs
 
-%configure \
-	--libdir=%{_libdir}
+%configure
+
 %{__make}
 
 %install
