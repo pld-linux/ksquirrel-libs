@@ -18,6 +18,7 @@ BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype-devel >= 2.1.9
+BuildRequires:	giflib-devel
 BuildRequires:	jasper-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libmng-devel
@@ -25,7 +26,6 @@ BuildRequires:	libpixman-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libsvg-cairo-devel
 BuildRequires:	libtiff-devel
-BuildRequires:	libungif-devel
 BuildRequires:	libwmf-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
