@@ -5,12 +5,12 @@
 Summary:	ksquirrel-libs - a set of image decoders
 Summary(pl):	ksquirrel-libs - zestaw dekoderów obrazków
 Name:		ksquirrel-libs
-Version:	0.6.2
+Version:	0.6.3
 Release:	1
 License:	GPL v2
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/ksquirrel/%{name}-%{version}.tar.bz2
-# Source0-md5:	19f8e31da699c10bdbbcf2a33c9ce947
+# Source0-md5:	2fd1546344058ab2f85893ae37dfbae5
 Patch0:		%{name}-pkgconfigdir.patch
 URL:		http://ksquirrel.sourceforge.net/
 BuildRequires:	OpenEXR-devel
@@ -79,6 +79,7 @@ rm -rf $RPM_BUILD_ROOT
 
 rm -rf $RPM_BUILD_ROOT%{_docdir}/%{name}
 rm -f $RPM_BUILD_ROOT%{_libdir}/ksquirrel-libs/*.la
+rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -92,7 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/ksquirrel-libs
 %attr(755,root,root) %{_libdir}/ksquirrel-libs/*.so
 %attr(755,root,root) %{_libdir}/ksquirrel-libs/libkls*.so.*.*.*
-%attr(755,root,root) %{_libdir}/ksquirrel-libs/libksquirrel-libs.so.*.*.*
+%attr(755,root,root) %{_libdir}/libksquirrel-libs.so*
 %{_datadir}/ksquirrel-libs/rgbmap
 
 %files devel
