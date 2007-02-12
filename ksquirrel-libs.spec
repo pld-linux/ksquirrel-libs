@@ -3,7 +3,7 @@
 # - make xorg deps
 #
 Summary:	ksquirrel-libs - a set of image decoders
-Summary(pl):	ksquirrel-libs - zestaw dekoderów obrazków
+Summary(pl.UTF-8):   ksquirrel-libs - zestaw dekoderÃ³w obrazkÃ³w
 Name:		ksquirrel-libs
 Version:	0.6.3
 Release:	1
@@ -39,25 +39,25 @@ ksquirrel-libs is a set of image decoders.
 You can use ksquirrel-libs in other projects, just write your own
 mechanism that could use libraries.
 
-%description -l pl
-ksquirrel-libs jest zestawem dekoderów obrazków.
+%description -l pl.UTF-8
+ksquirrel-libs jest zestawem dekoderÃ³w obrazkÃ³w.
 - Zawiera normalne biblioteki dla KSquirrela.
-- Zawiera ró¿ne dekodery obrazów: JPEG, PNG, BMP, TIFF itd.
+- Zawiera rÃ³Å¼ne dekodery obrazÃ³w: JPEG, PNG, BMP, TIFF itd.
 
-Mo¿na u¿ywaæ ksquirrel-libs w innych projektach. Wystarczy tylko
-napisaæ w³asny mechanizm, który bêdzie potrafi³ ich u¿ywaæ.
+MoÅ¼na uÅ¼ywaÄ‡ ksquirrel-libs w innych projektach. Wystarczy tylko
+napisaÄ‡ wÅ‚asny mechanizm, ktÃ³ry bÄ™dzie potrafiÅ‚ ich uÅ¼ywaÄ‡.
 
 %package devel
 Summary:	Header files for ksquirrel-libs
-Summary(pl):	Nag³ówki biblioteki ksquirrel-libs
+Summary(pl.UTF-8):   NagÅ‚Ã³wki biblioteki ksquirrel-libs
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for ksquirrel-libs.
 
-%description devel -l pl
-Nag³ówki biblioteki ksquirrel-libs.
+%description devel -l pl.UTF-8
+NagÅ‚Ã³wki biblioteki ksquirrel-libs.
 
 %prep
 %setup -q
