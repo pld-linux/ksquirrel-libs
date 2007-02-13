@@ -3,7 +3,7 @@
 # - make xorg deps
 #
 Summary:	ksquirrel-libs - a set of image decoders
-Summary(pl.UTF-8):   ksquirrel-libs - zestaw dekoderów obrazków
+Summary(pl.UTF-8):	ksquirrel-libs - zestaw dekoderów obrazków
 Name:		ksquirrel-libs
 Version:	0.6.3
 Release:	1
@@ -49,7 +49,7 @@ napisać własny mechanizm, który będzie potrafił ich używać.
 
 %package devel
 Summary:	Header files for ksquirrel-libs
-Summary(pl.UTF-8):   Nagłówki biblioteki ksquirrel-libs
+Summary(pl.UTF-8):	Nagłówki biblioteki ksquirrel-libs
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
