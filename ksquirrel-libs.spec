@@ -98,6 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/ksquirrel-libs/*.so
 %attr(755,root,root) %{_libdir}/ksquirrel-libs/libkls*.so.*.*.*
 %attr(755,root,root) %{_libdir}/libksquirrel-libs.so*
+%dir %{_datadir}/ksquirrel-libs
 %{_datadir}/ksquirrel-libs/rgbmap
 
 %files devel
