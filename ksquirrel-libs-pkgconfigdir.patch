@@ -1,10 +1,10 @@
---- ksquirrel-libs-0.6.1/Makefile.am.old	2005-12-18 17:32:26.000000000 +0100
-+++ ksquirrel-libs-0.6.1/Makefile.am	2006-01-23 21:42:39.000000000 +0100
+--- ksquirrel-libs-0.7.2/Makefile.am	2007-09-26 21:35:45.000000000 +0200
++++ ksquirrel-libs-0.7.2/Makefile.am-new	2007-10-04 16:55:06.143328868 +0200
 @@ -2,7 +2,7 @@
  
  AUTOMAKE_OPTIONS = foreign 
  
--pkgconfigdir = ${exec_prefix}/lib/pkgconfig
+-pkgconfigdir = ${libdir}/pkgconfig
 +pkgconfigdir = $(libexecdir)/pkgconfig
  pkgconfig_DATA = ksquirrellibs.pc
  
