@@ -2,19 +2,16 @@
 #TODO:
 # - make xorg deps
 #
-%define		_pre	pre2
 Summary:	ksquirrel-libs - a set of image decoders
 Summary(pl.UTF-8):	ksquirrel-libs - zestaw dekoderów obrazków
 Name:		ksquirrel-libs
-Version:	0.7.0
-Release:	0.%{_pre}.1
+Version:	0.7.2
+Release:	1
 License:	GPL v2
 Group:		X11/Applications/Graphics
-Source0:	http://dl.sourceforge.net/ksquirrel/%{name}-%{version}-%{_pre}.tar.bz2
-# Source0-md5:	2f49743848f386c3c52c19431ddcd772
+Source0:	http://dl.sourceforge.net/ksquirrel/%{name}-%{version}.tar.bz2
+# Source0-md5:	5f6a1ff91d2eb619b061680465670335
 Patch0:		%{name}-pkgconfigdir.patch
-Patch1:		kde-ac260.patch
-Patch2:		%{name}-am110.patch
 URL:		http://ksquirrel.sourceforge.net/
 BuildRequires:	OpenEXR-devel
 BuildRequires:	autoconf
@@ -62,14 +59,12 @@ Header files for ksquirrel-libs.
 Nagłówki biblioteki ksquirrel-libs.
 
 %prep
-%setup -q -n %{name}-%{version}-%{_pre}
+%setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %build
-#cp -f /usr/share/automake/config.sub admin
-#%{__make} -f admin/Makefile.common cvs
+cp -f /usr/share/automake/config.sub admin
+%{__make} -f admin/Makefile.common cvs
 
 %configure
 %{__make}
@@ -96,6 +91,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/ksquirrel-libs-*
 %dir %{_libdir}/ksquirrel-libs
 %attr(755,root,root) %{_libdir}/ksquirrel-libs/*.so
+%attr(755,root,root) %{_libdir}/*.so.*.*.*
 %attr(755,root,root) %{_libdir}/ksquirrel-libs/libkls*.so.*.*.*
 %attr(755,root,root) %{_libdir}/libksquirrel-libs.so*
 %dir %{_datadir}/ksquirrel-libs
@@ -104,5 +100,4 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/ksquirrel-libs
-%{_prefix}/lib/pkgconfig/*.pc
-#%{_pkgconfigdir}/*.pc
+%{_pkgconfigdir}/*.pc
