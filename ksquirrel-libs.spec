@@ -1,6 +1,11 @@
 #
 #TODO:
 # - make xorg deps
+# - add support for:
+#   a) medcon  - http://xmedcon.sourceforge.net/
+#   b) vec2web - http://www.ribbonsoft.com/vec2web.html
+# - check if they works - ksquirrel doesnt work for me
+# - check if djvulibre, librsvg, netpbm-progs and transfig are not required
 #
 Summary:	ksquirrel-libs - a set of image decoders
 Summary(pl.UTF-8):	ksquirrel-libs - zestaw dekoderów obrazków
@@ -16,6 +21,7 @@ URL:		http://ksquirrel.sourceforge.net/
 BuildRequires:	OpenEXR-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	djvulibre
 BuildRequires:	freetype-devel >= 2.1.9
 BuildRequires:	giflib-devel
 BuildRequires:	jasper-devel
@@ -23,11 +29,18 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libmng-devel
 BuildRequires:	libpixman-devel
 BuildRequires:	libpng-devel
+BuildRequires:	librsvg
 BuildRequires:	libsvg-cairo-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libwmf-devel
+BuildRequires:	netpbm-progs
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
+BuildRequires:	transfig
+Suggests:	djvulibre
+Suggests:	librsvg
+Suggests:	netpbm-progs
+Suggests:	transfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -63,9 +76,6 @@ Nagłówki biblioteki ksquirrel-libs.
 %patch0 -p1
 
 %build
-cp -f /usr/share/automake/config.sub admin
-%{__make} -f admin/Makefile.common cvs
-
 %configure
 %{__make}
 
@@ -95,6 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/ksquirrel-libs/libkls*.so.*.*.*
 %attr(755,root,root) %{_libdir}/libksquirrel-libs.so*
 %dir %{_datadir}/ksquirrel-libs
+%{_datadir}/ksquirrel-libs/*.ui
 %{_datadir}/ksquirrel-libs/rgbmap
 
 %files devel
