@@ -1,6 +1,5 @@
 #
 #TODO:
-# - make xorg deps
 # - add support for:
 #   a) medcon  - http://xmedcon.sourceforge.net/
 #   b) vec2web - http://www.ribbonsoft.com/vec2web.html
@@ -12,35 +11,34 @@ Summary(pl.UTF-8):	ksquirrel-libs - zestaw dekoderów obrazków
 Name:		ksquirrel-libs
 Version:	0.7.3
 Release:	1
-License:	GPL v2
-Group:		X11/Applications/Graphics
+License:	LGPL v2+
+Group:		Applications/Graphics
 Source0:	http://dl.sourceforge.net/ksquirrel/%{name}-%{version}.tar.bz2
 # Source0-md5:	059e1f0ca8f7e4f3aceb36baf6749810
-Patch0:		%{name}-pkgconfigdir.patch
+Patch0:		kde-ac260-lt.patch
 URL:		http://ksquirrel.sourceforge.net/
 BuildRequires:	OpenEXR-devel
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	djvulibre
+BuildRequires:	autoconf >= 2.52
+BuildRequires:	automake >= 1.6.1
 BuildRequires:	freetype-devel >= 2.1.9
 BuildRequires:	giflib-devel
 BuildRequires:	jasper-devel
+BuildRequires:	lcms-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libmng-devel
-BuildRequires:	libpixman-devel
-BuildRequires:	libpng-devel
-BuildRequires:	librsvg
-BuildRequires:	libsvg-cairo-devel
+BuildRequires:	libstdc++-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libwmf-devel
-BuildRequires:	netpbm-progs
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
-BuildRequires:	transfig
+BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	zlib-devel
 Suggests:	djvulibre
 Suggests:	librsvg
+Suggests:	medcon
 Suggests:	netpbm-progs
 Suggests:	transfig
+#Suggests:	vec2web
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -64,6 +62,7 @@ Summary:	Header files for ksquirrel-libs
 Summary(pl.UTF-8):	Nagłówki biblioteki ksquirrel-libs
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	libstdc++-devel
 
 %description devel
 Header files for ksquirrel-libs.
@@ -76,7 +75,22 @@ Nagłówki biblioteki ksquirrel-libs.
 %patch0 -p1
 
 %build
-%configure
+%{__make} -C admin cvs
+%configure \
+	DJVU=/usr/bin/ddjvu \
+	ILBMTOPPM=/usr/bin/ilmbtoppm \
+	LEAFTOPPM=/usr/bin/leaftoppm \
+	MACTOPBM=/usr/bin/macptopbm \
+	MEDCON=/usr/bin/medcon \
+	NEOTOPPM=/usr/bin/neotoppm \
+	PI1TOPPM=/usr/bin/pi1toppm \
+	PI3TOPPM=/usr/bin/pi3topbm \
+	PICTTOPPM=/usr/bin/picttoppm \
+	UTAHTOPNM=/usr/bin/rletopnm \
+	RSVG=/usr/bin/rsvg-convert \
+	VEC2WEB=/usr/bin/vec2web \
+	XFIG=/usr/bin/fig2dev \
+	XIMTOPPM=/usr/bin/ximtoppm
 %{__make}
 
 %install
@@ -87,7 +101,6 @@ rm -rf $RPM_BUILD_ROOT
 
 rm -rf $RPM_BUILD_ROOT%{_docdir}/%{name}
 rm -f $RPM_BUILD_ROOT%{_libdir}/ksquirrel-libs/*.la
-rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -97,18 +110,23 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README doc/html/*.{css,gif,html,png}
+%doc AUTHORS COPYING README doc/html/*.{css,gif,html,png}
 %attr(755,root,root) %{_bindir}/ksquirrel-libs-*
+%attr(755,root,root) %{_libdir}/libksquirrel-libs.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libksquirrel-libs.so.0
+%attr(755,root,root) %{_libdir}/libksquirrel-libs-png.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libksquirrel-libs-png.so.0
 %dir %{_libdir}/ksquirrel-libs
-%attr(755,root,root) %{_libdir}/ksquirrel-libs/*.so
-%attr(755,root,root) %{_libdir}/*.so.*.*.*
-%attr(755,root,root) %{_libdir}/ksquirrel-libs/libkls*.so.*.*.*
-%attr(755,root,root) %{_libdir}/libksquirrel-libs.so*
+%attr(755,root,root) %{_libdir}/ksquirrel-libs/libkls_*.so*
 %dir %{_datadir}/ksquirrel-libs
 %{_datadir}/ksquirrel-libs/*.ui
 %{_datadir}/ksquirrel-libs/rgbmap
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libksquirrel-libs.so
+%attr(755,root,root) %{_libdir}/libksquirrel-libs-png.so
+%{_libdir}/libksquirrel-libs.la
+%{_libdir}/libksquirrel-libs-png.la
 %{_includedir}/ksquirrel-libs
-%{_pkgconfigdir}/*.pc
+%{_pkgconfigdir}/ksquirrellibs.pc
