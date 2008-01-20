@@ -1,10 +1,8 @@
 #
 #TODO:
 # - add support for:
-#   a) medcon  - http://xmedcon.sourceforge.net/
 #   b) vec2web - http://www.ribbonsoft.com/vec2web.html
-# - check if they works - ksquirrel doesnt work for me
-# - check if djvulibre, librsvg, netpbm-progs and transfig are not required
+# - check if they work - ksquirrel doesnt work for me
 #
 Summary:	ksquirrel-libs - a set of image decoders
 Summary(pl.UTF-8):	ksquirrel-libs - zestaw dekoderów obrazków
@@ -21,6 +19,7 @@ BuildRequires:	OpenEXR-devel
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1.6.1
 BuildRequires:	freetype-devel >= 2.1.9
+BuildRequires:	gettext-devel
 BuildRequires:	giflib-devel
 BuildRequires:	jasper-devel
 BuildRequires:	lcms-devel
