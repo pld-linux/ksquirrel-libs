@@ -1,9 +1,3 @@
-#
-#TODO:
-# - add support for:
-#   b) vec2web - http://www.ribbonsoft.com/vec2web.html
-# - check if they work - ksquirrel doesnt work for me
-#
 Summary:	ksquirrel-libs - a set of image decoders
 Summary(pl.UTF-8):	ksquirrel-libs - zestaw dekoderów obrazków
 Name:		ksquirrel-libs
@@ -37,7 +31,9 @@ Suggests:	librsvg
 Suggests:	medcon
 Suggests:	netpbm-progs
 Suggests:	transfig
-#Suggests:	vec2web
+# ugly: needs DISPLAY to work
+# however, ksquirrel (the only ksquirrel-libs user currently) is X-based
+Suggests:	vec2web
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
