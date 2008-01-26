@@ -1,34 +1,39 @@
-#
-#TODO:
-# - make xorg deps
-#
 Summary:	ksquirrel-libs - a set of image decoders
-Summary(pl):	ksquirrel-libs - zestaw dekoderów obrazków
+Summary(pl.UTF-8):	ksquirrel-libs - zestaw dekoderÃ³w obrazkÃ³w
 Name:		ksquirrel-libs
-Version:	0.6.3
+Version:	0.7.5
 Release:	1
-License:	GPL v2
-Group:		X11/Applications/Graphics
+License:	LGPL v2+
+Group:		Applications/Graphics
 Source0:	http://dl.sourceforge.net/ksquirrel/%{name}-%{version}.tar.bz2
-# Source0-md5:	2fd1546344058ab2f85893ae37dfbae5
-Patch0:		%{name}-pkgconfigdir.patch
+# Source0-md5:	90726d775c612eabd19a328fe3898b0f
+Patch0:		kde-ac260-lt.patch
 URL:		http://ksquirrel.sourceforge.net/
 BuildRequires:	OpenEXR-devel
-BuildRequires:	XFree86-devel
-BuildRequires:	autoconf
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.52
+BuildRequires:	automake >= 1.6.1
 BuildRequires:	freetype-devel >= 2.1.9
+BuildRequires:	gettext-devel
 BuildRequires:	giflib-devel
 BuildRequires:	jasper-devel
+BuildRequires:	lcms-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libmng-devel
-BuildRequires:	libpixman-devel
-BuildRequires:	libpng-devel
-BuildRequires:	libsvg-cairo-devel
+BuildRequires:	libstdc++-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libwmf-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
+BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	zlib-devel
+Suggests:	djvulibre
+Suggests:	librsvg
+Suggests:	medcon
+Suggests:	netpbm-progs
+Suggests:	transfig
+# ugly: needs DISPLAY to work
+# however, ksquirrel (the only ksquirrel-libs user currently) is X-based
+Suggests:	vec2web
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -39,36 +44,48 @@ ksquirrel-libs is a set of image decoders.
 You can use ksquirrel-libs in other projects, just write your own
 mechanism that could use libraries.
 
-%description -l pl
-ksquirrel-libs jest zestawem dekoderów obrazków.
+%description -l pl.UTF-8
+ksquirrel-libs jest zestawem dekoderÃ³w obrazkÃ³w.
 - Zawiera normalne biblioteki dla KSquirrela.
-- Zawiera ró¿ne dekodery obrazów: JPEG, PNG, BMP, TIFF itd.
+- Zawiera rÃ³Å¼ne dekodery obrazÃ³w: JPEG, PNG, BMP, TIFF itd.
 
-Mo¿na u¿ywaæ ksquirrel-libs w innych projektach. Wystarczy tylko
-napisaæ w³asny mechanizm, który bêdzie potrafi³ ich u¿ywaæ.
+MoÅ¼na uÅ¼ywaÄ‡ ksquirrel-libs w innych projektach. Wystarczy tylko
+napisaÄ‡ wÅ‚asny mechanizm, ktÃ³ry bÄ™dzie potrafiÅ‚ ich uÅ¼ywaÄ‡.
 
 %package devel
 Summary:	Header files for ksquirrel-libs
-Summary(pl):	Nag³ówki biblioteki ksquirrel-libs
+Summary(pl.UTF-8):	NagÅ‚Ã³wki biblioteki ksquirrel-libs
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	libstdc++-devel
 
 %description devel
 Header files for ksquirrel-libs.
 
-%description devel -l pl
-Nag³ówki biblioteki ksquirrel-libs.
+%description devel -l pl.UTF-8
+NagÅ‚Ã³wki biblioteki ksquirrel-libs.
 
 %prep
 %setup -q
 %patch0 -p1
 
 %build
-cp -f /usr/share/automake/config.sub admin
-%{__make} -f admin/Makefile.common cvs
-
-%configure
-
+%{__make} -C admin cvs
+%configure \
+	DJVU=/usr/bin/ddjvu \
+	ILBMTOPPM=/usr/bin/ilmbtoppm \
+	LEAFTOPPM=/usr/bin/leaftoppm \
+	MACTOPBM=/usr/bin/macptopbm \
+	MEDCON=/usr/bin/medcon \
+	NEOTOPPM=/usr/bin/neotoppm \
+	PI1TOPPM=/usr/bin/pi1toppm \
+	PI3TOPPM=/usr/bin/pi3topbm \
+	PICTTOPPM=/usr/bin/picttoppm \
+	UTAHTOPNM=/usr/bin/rletopnm \
+	RSVG=/usr/bin/rsvg-convert \
+	VEC2WEB=/usr/bin/vec2web \
+	XFIG=/usr/bin/fig2dev \
+	XIMTOPPM=/usr/bin/ximtoppm
 %{__make}
 
 %install
@@ -79,7 +96,6 @@ rm -rf $RPM_BUILD_ROOT
 
 rm -rf $RPM_BUILD_ROOT%{_docdir}/%{name}
 rm -f $RPM_BUILD_ROOT%{_libdir}/ksquirrel-libs/*.la
-rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -89,14 +105,23 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README doc/html/*.{css,gif,html,png}
+%doc AUTHORS COPYING README doc/html/*.{css,gif,html,png}
+%attr(755,root,root) %{_bindir}/ksquirrel-libs-*
+%attr(755,root,root) %{_libdir}/libksquirrel-libs.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libksquirrel-libs.so.0
+%attr(755,root,root) %{_libdir}/libksquirrel-libs-png.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libksquirrel-libs-png.so.0
 %dir %{_libdir}/ksquirrel-libs
-%attr(755,root,root) %{_libdir}/ksquirrel-libs/*.so
-%attr(755,root,root) %{_libdir}/ksquirrel-libs/libkls*.so.*.*.*
-%attr(755,root,root) %{_libdir}/libksquirrel-libs.so*
+%attr(755,root,root) %{_libdir}/ksquirrel-libs/libkls_*.so*
+%dir %{_datadir}/ksquirrel-libs
+%{_datadir}/ksquirrel-libs/*.ui
 %{_datadir}/ksquirrel-libs/rgbmap
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libksquirrel-libs.so
+%attr(755,root,root) %{_libdir}/libksquirrel-libs-png.so
+%{_libdir}/libksquirrel-libs.la
+%{_libdir}/libksquirrel-libs-png.la
 %{_includedir}/ksquirrel-libs
-%{_pkgconfigdir}/*.pc
+%{_pkgconfigdir}/ksquirrellibs.pc
