@@ -1,12 +1,12 @@
 Summary:	ksquirrel-libs - a set of image decoders
 Summary(pl.UTF-8):	ksquirrel-libs - zestaw dekoderów obrazków
 Name:		ksquirrel-libs
-Version:	0.7.3
+Version:	0.7.5
 Release:	1
 License:	LGPL v2+
 Group:		Applications/Graphics
 Source0:	http://dl.sourceforge.net/ksquirrel/%{name}-%{version}.tar.bz2
-# Source0-md5:	059e1f0ca8f7e4f3aceb36baf6749810
+# Source0-md5:	90726d775c612eabd19a328fe3898b0f
 Patch0:		kde-ac260-lt.patch
 URL:		http://ksquirrel.sourceforge.net/
 BuildRequires:	OpenEXR-devel
