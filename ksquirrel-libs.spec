@@ -10,6 +10,7 @@ Source0:	http://dl.sourceforge.net/ksquirrel/%{name}-%{version}.tar.bz2
 Patch0:		kde-ac260-lt.patch
 URL:		http://ksquirrel.sourceforge.net/
 BuildRequires:	OpenEXR-devel
+BuildRequires:	XFree86-devel
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1.6.1
 BuildRequires:	freetype-devel >= 2.1.9
@@ -24,7 +25,6 @@ BuildRequires:	libtiff-devel
 BuildRequires:	libwmf-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
-BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	zlib-devel
 Suggests:	djvulibre
 Suggests:	librsvg
