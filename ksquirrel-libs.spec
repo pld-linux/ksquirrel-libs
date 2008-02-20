@@ -70,7 +70,7 @@ Nagłówki biblioteki ksquirrel-libs.
 %patch0 -p1
 
 %build
-%{__make} -C admin cvs
+%{__make} -f admin/Makefile.common cvs
 %configure \
 	DJVU=/usr/bin/ddjvu \
 	ILBMTOPPM=/usr/bin/ilmbtoppm \
