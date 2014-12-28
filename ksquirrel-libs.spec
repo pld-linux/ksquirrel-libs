@@ -13,7 +13,7 @@ BuildRequires:	OpenEXR-devel
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1.6.1
 BuildRequires:	freetype-devel >= 2.1.9
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	giflib-devel
 BuildRequires:	jasper-devel
 BuildRequires:	lcms-devel
